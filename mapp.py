@@ -69,7 +69,7 @@ def user_input_features(st):
     
         return pd.DataFrame(data, index=[0])
     
-        user_data = user_input_features(st)
+        user_data = user_input_features()
     
 
 
