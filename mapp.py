@@ -133,7 +133,7 @@ result = encoder.inverse_transform([int(prediction[0])])
     
 st.write(f"The mushroom is predicted to be {result[0]}.")
     
-    user_data = user_input_features()
+user_data = user_input_features()
 if st.button("Predict"):
     user_data_encoded = pd.get_dummies(user_data, drop_first=True)
     missing_cols = set(original_columns) - set(user_data_encoded.columns)
