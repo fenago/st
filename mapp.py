@@ -103,7 +103,7 @@ user_data_encoded = pd.get_dummies(user_data, drop_first=True)
 missing_cols = set(original_columns) - set(user_data_encoded.columns)
 for col in missing_cols:
     user_data_encoded[col] = 0
-user_data_encoded = user_data_encoded[X.columns]
+user_data_encoded = user_data_encoded[original_columns]
 user_data_scaled = scaler.transform(user_data_encoded)
 
 prediction = model.predict(user_data_scaled)
