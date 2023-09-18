@@ -1,3 +1,5 @@
+user_data = user_input_features()
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -31,8 +33,8 @@ original_columns = [
 
 # Load the saved model and preprocessors
 model = tf.keras.models.load_model('mushroom_model.h5')
-scaler = joblib.load('mscaler.pkl')
-encoder = joblib.load('mencoder.pkl')
+scaler = joblib.load('scaler.pkl')
+encoder = joblib.load('encoder.pkl')
 
 st.title('Mushroom Edibility Classifier')
 
