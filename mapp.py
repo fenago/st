@@ -71,7 +71,7 @@ def user_input_features(st):
     
         user_data = user_input_features(st)
     
-    import streamlit as st
+
     import pandas as pd
     import numpy as np
     import tensorflow as tf
