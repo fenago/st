@@ -31,8 +31,8 @@ original_columns = [
 
 # Load the saved model and preprocessors
 model = tf.keras.models.load_model('mushroom_model.h5')
-scaler = joblib.load('mscaler.pkl')
-encoder = joblib.load('mencoder.pkl')
+scaler = joblib.load('scaler.pkl')
+encoder = joblib.load('encoder.pkl')
 
 st.title('Mushroom Edibility Classifier')
 
@@ -97,6 +97,17 @@ def user_input_features():
 
     return pd.DataFrame(data, index=[0])
 
+
+if st.button("Predict"):
+    user_data_encoded = pd.get_dummies(user_data, drop_first=True)
+    missing_cols = set(original_columns) - set(user_data_encoded.columns)
+    for col in missing_cols:
+        user_data_encoded[col] = 0
+    user_data_encoded = user_data_encoded[original_columns]
+    user_data_scaled = scaler.transform(user_data_encoded)
+    prediction = model.predict(user_data_scaled)
+    result = encoder.inverse_transform([int(prediction[0])])
+    st.write(f"The mushroom is predicted to be {result[0]}.")
 user_data = user_input_features()
 
 user_data_encoded = pd.get_dummies(user_data, drop_first=True)
