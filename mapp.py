@@ -8,7 +8,7 @@ import joblib
 
 
 
-def user_input_features(st):
+def user_input_features():
         st.subheader("Cap Features")
         cap_shape = st.selectbox('Cap Shape', ['bell', 'conical', 'convex', 'flat', 'knobbed', 'sunken'])
         cap_surface = st.selectbox('Cap Surface', ['fibrous', 'grooves', 'scaly', 'smooth'])
@@ -125,7 +125,7 @@ def user_input_features(st):
     
     st.write(f"The mushroom is predicted to be {result[0]}.")
     
-        user_data = user_input_features(st)
+        user_data = user_input_features()
     if st.button("Predict"):
         user_data_encoded = pd.get_dummies(user_data, drop_first=True)
         missing_cols = set(original_columns) - set(user_data_encoded.columns)
