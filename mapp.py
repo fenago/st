@@ -31,8 +31,8 @@ original_columns = [
 
 # Load the saved model and preprocessors
 model = tf.keras.models.load_model('mushroom_model.h5')
-scaler = joblib.load('scaler.pkl')
-encoder = joblib.load('encoder.pkl')
+scaler = joblib.load('mscaler.pkl')
+encoder = joblib.load('mencoder.pkl')
 
 st.title('Mushroom Edibility Classifier')
 
