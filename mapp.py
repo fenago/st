@@ -72,7 +72,11 @@ def user_input_features(st):
         user_data = user_input_features(st)
     
 
-   
+
+
+
+
+    
     # Original Columns (after one hot encoding or pandas)
     original_columns = [
         'cap-shape_c', 'cap-shape_f', 'cap-shape_k', 'cap-shape_s', 'cap-shape_x',
