@@ -8,8 +8,7 @@ import joblib
 
 
 
-def main():
-    def user_input_features(st):
+def user_input_features(st):
         st.subheader("Cap Features")
         cap_shape = st.selectbox('Cap Shape', ['bell', 'conical', 'convex', 'flat', 'knobbed', 'sunken'])
         cap_surface = st.selectbox('Cap Surface', ['fibrous', 'grooves', 'scaly', 'smooth'])
