@@ -4,6 +4,8 @@ import requests
 from io import BytesIO
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
+import azure
+st.write("Azure imported successfully")
 
 # openai.api_key = st.secrets["api_key"]
 # Initialize Computer Vision Client
