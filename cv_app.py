@@ -5,8 +5,9 @@ from io import BytesIO
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 
+az_key = st.secrets["az_key"]
 # Initialize Computer Vision Client
-computervision_client = ComputerVisionClient('<Your_ComputerVision_Endpoint>', CognitiveServicesCredentials('<Your_ComputerVision_Key>'))
+computervision_client = ComputerVisionClient('https://cvdrlee.cognitiveservices.azure.com/', CognitiveServicesCredentials(az_key))
 
 def analyze_image(image):
     img_byte_arr = BytesIO()
