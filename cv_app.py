@@ -37,7 +37,7 @@ def display_analysis(analysis):
     st.write(f"  Clip Art Type: {analysis.image_type.clip_art_type}")
     st.write(f"  Line Drawing Type: {analysis.image_type.line_drawing_type}")
 
-st.title('Azure Computer Vision App')
+st.title('Dr. Lee Azure Computer Vision App')
 
 uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'png', 'jpeg'])
 url = st.text_input("Or enter Image URL:")
