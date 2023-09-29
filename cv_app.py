@@ -12,9 +12,15 @@ computervision_client = ComputerVisionClient('https://cvdrlee.cognitiveservices.
 def analyze_image(image):
     img_byte_arr = BytesIO()
     image.save(img_byte_arr, format='PNG')
-    img_byte_arr = img_byte_arr.getvalue()
+    
+    # Reset the pointer of BytesIO object to the start
+    img_byte_arr.seek(0)
+    
+    # Use BytesIO object directly as it's a type of stream
     analysis = computervision_client.analyze_image_in_stream(img_byte_arr, visual_features=["Categories", "Tags", "Description", "Color", "ImageType"])
+    
     return analysis
+
 
 def display_analysis(analysis):
     st.write("### Categories:")
