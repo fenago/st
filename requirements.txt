@@ -9,3 +9,4 @@ joblib
 tensorflow
 torch
 transformers
+azure-cognitiveservices-vision-computervision
