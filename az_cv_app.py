@@ -131,7 +131,7 @@ if uploaded_file is not None:
     st.write("Classifying...")
     analysis = analyze_image(image)
     json_results = json.dumps(analysis.as_dict())
-    what_do_you_see(json_results)
+    what_do_you_see(json_results,analysis)
     display_analysis(analysis)
 
 elif url:
@@ -147,7 +147,7 @@ elif url:
             st.write("Classifying...")
             analysis = analyze_image(image)
             json_results = json.dumps(analysis.as_dict())
-            what_do_you_see(json_results)
+            what_do_you_see(json_results,analysis)
             display_analysis(analysis)
         else:
             st.error("The URL does not point to a valid image. Content-Type received was " + content_type)
