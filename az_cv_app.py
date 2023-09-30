@@ -58,22 +58,40 @@ def create_prompt(system_message, messages):
     return prompt
 
 def what_do_you_see(json_results):
-  # Create Prompt for OpenAI
+    # Create Prompt for OpenAI
     system_message = "system\n\n"
     question = "What is in the picture?"
     messages = [{"sender": "user", "text": "Hello, take into account the following information " + str(json_results)},
                 {"sender": "user", "text": question}]
-        
+    
+    # Print the prompt to check if it's correctly formatted.
+    prompt = create_prompt(system_message, messages)
+    st.write("### Prompt Sent to OpenAI:")
+    st.write(prompt)
+    
     # Get Response from OpenAI
     response = openai.Completion.create(
         engine=deployment_name,
-        prompt=create_prompt(system_message, messages),
+        prompt=prompt,
         temperature=0.7,
         max_tokens=800,
         top_p=0.95,
         frequency_penalty=0,
         presence_penalty=0,
         stop=[""])
+    
+    # Print the entire response object to check if a valid response is received.
+    st.write("### OpenAI API Response Object:")
+    st.write(response)
+    
+    # Display Analysis and Response
+    st.write("### Azure Computer Vision Semantic Analysis:")
+    st.write("### OpenAI Response:")
+    if response and response.choices:
+        st.write(response.choices[0].text.strip())
+    else:
+        st.write("No response received from OpenAI.")
+
        
     # Display Analysis and Response
     st.write("### Azure Computer Vision Semantic Analysis:")
