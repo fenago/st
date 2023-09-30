@@ -57,19 +57,30 @@ def create_prompt(system_message, messages):
     prompt += "\nassistant\n"
     return prompt
 
-def what_do_you_see(json_results):
-    # Create Prompt for OpenAI
-    system_message = "system\n\n"
-    question = "What is in the picture?"
-    messages = [{"sender": "user", "text": "Hello, take into account the following information " + str(json_results)},
-                {"sender": "user", "text": question}]
+def create_human_readable_prompt(analysis):
+    # Extract Key Information
+    description = analysis.description.captions[0].text if analysis.description.captions else ""
+    tags = ", ".join(tag.name for tag in analysis.tags)
+    dominant_color_foreground = analysis.color.dominant_color_foreground
+    dominant_color_background = analysis.color.dominant_color_background
     
-    # Print the prompt to check if it's correctly formatted.
-    prompt = create_prompt(system_message, messages)
-    st.write("### Prompt Sent to OpenAI:")
+    # Create a concise and human-readable prompt
+    prompt = f"The picture has a description: {description}. "
+    prompt += f"The dominant foreground color is {dominant_color_foreground}, and the dominant background color is {dominant_color_background}. "
+    prompt += f"The tags associated with the picture are: {tags}. "
+    prompt += "What is in the picture?"
+    
+    return prompt
+
+def what_do_you_see(json_results, analysis):
+    # Create a more concise and human-readable prompt for OpenAI
+    prompt = create_human_readable_prompt(analysis)
+    
+    # Display the new prompt
+    st.write("### New Prompt Sent to OpenAI:")
     st.write(prompt)
     
-    # Get Response from OpenAI
+    # Get Response from OpenAI with the new prompt
     response = openai.Completion.create(
         engine=deployment_name,
         prompt=prompt,
@@ -80,9 +91,18 @@ def what_do_you_see(json_results):
         presence_penalty=0,
         stop=[""])
     
-    # Print the entire response object to check if a valid response is received.
+    # Display the entire response object to check if a valid response is received.
     st.write("### OpenAI API Response Object:")
     st.write(response)
+    
+    # Display Analysis and Response
+    st.write("### Azure Computer Vision Semantic Analysis:")
+    st.write("### OpenAI Response:")
+    if response and response.choices:
+        st.write(response.choices[0].text.strip())
+    else:
+        st.write("No response received from OpenAI.")
+
     
     # Display Analysis and Response
     st.write("### Azure Computer Vision Semantic Analysis:")
