@@ -49,6 +49,14 @@ def display_analysis(analysis):
     st.write(f"  Clip Art Type: {analysis.image_type.clip_art_type}")
     st.write(f"  Line Drawing Type: {analysis.image_type.line_drawing_type}")
 
+def create_prompt(system_message, messages):
+    prompt = system_message
+    message_template = "\n{}\n{}\n"
+    for message in messages:
+        prompt += message_template.format(message['sender'], message['text'])
+    prompt += "\nassistant\n"
+    return prompt
+
 def what_do_you_see(json_results):
   # Create Prompt for OpenAI
         system_message = "system\n\n"
