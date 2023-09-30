@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 from PIL import Image
 import requests
 from io import BytesIO
