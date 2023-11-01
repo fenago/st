@@ -3,7 +3,7 @@ import openai
 from youtube_transcript_api import YouTubeTranscriptApi
 from streamlit_chat import message
 
-st.title("Learning Voyage")
+st.title('''Dr. Lee - Co-Pilot''')
 st.sidebar.image('https://clipground.com/images/miami-dade-college-logo-7.png', width=100)
 st.sidebar.header("Instructions")
 st.sidebar.info(
