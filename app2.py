@@ -20,13 +20,12 @@ def main():
     hours_saved_per_employee = st.number_input('Hours Saved per Employee per Week', min_value=1.0, value=1.0, step=1.0, format='%f', help='Enter the average number of hours saved per employee per week due to automation.')
     cost_per_hour = st.number_input('Average Cost per Hour', min_value=0.0, value=150.0, step=1.0, format='%f', help='Enter the average cost per hour for the automated task.')
 
-# Button to compute savings
-if st.button('Compute Savings'):
-    weekly_savings, monthly_savings, annual_savings = calculate_savings(num_employees, hours_saved_per_employee, cost_per_hour)
-    st.success(f"Savings per Week: ${weekly_savings:,.2f}")
-    st.success(f"Savings per Month: ${monthly_savings:,.2f}")
-    st.success(f"Annual Savings: ${annual_savings:,.2f}")
-
+    # Button to compute savings
+    if st.button('Compute Savings'):
+        weekly_savings, monthly_savings, annual_savings = calculate_savings(num_employees, hours_saved_per_employee, cost_per_hour)
+        st.success(f"Savings per Week: ${weekly_savings:,.2f}")
+        st.success(f"Savings per Month: ${monthly_savings:,.2f}")
+        st.success(f"Annual Savings: ${annual_savings:,.2f}")
 
 if __name__ == "__main__":
     main()
